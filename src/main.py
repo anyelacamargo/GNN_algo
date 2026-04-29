@@ -7,9 +7,9 @@ from evaluate import compare_models
 from predict import predict_diseases
 
 
-# ================================
-# LOAD DATA
-# ================================
+
+# Load data
+
 print("\n[1] Loading data...")
 train_df = load_triples(TRAIN_FILE)
 valid_df = load_triples(VALID_FILE)
@@ -18,18 +18,21 @@ test_df  = load_triples(TEST_FILE)
 training, validation, testing = build_factories(train_df, valid_df, test_df)
 
 
-# ================================
-# GRAPH EXPLORATION
-# ================================
-print("\n[2] Graph exploration...")
-G = build_graph(train_df)
-print_stats(G)
-plot_degree_distribution(G)
+
+# Graph exploration but the R script is more specific. Use True to run
 
 
-# ================================
-# TRAIN OR LOAD MODELS
-# ================================
+plotg = False
+if plotg == True :
+	print("\n[2] Graph exploration...")
+	G = build_graph(train_df)
+	print_stats(G)
+	plot_degree_distribution(G)
+
+
+
+# Train or load models
+
 print("\n[3] Train or load models...")
 
 results = {}
@@ -52,9 +55,9 @@ for model_name in MODELS:
     models[model_name] = result.model
 
 
-# ================================
-# EVALUATION (ONLY IF TRAINED)
-# ================================
+
+# Evaluation 
+
 print("\n[4] Model evaluation...")
 
 if results:  # only if we trained in this run
@@ -80,9 +83,8 @@ best_model = models[best_model_name]
 print(f"\nSelected model: {best_model_name}")
 
 
-# ================================
-# PREDICTION
-# ================================
+# Prediction
+
 print("\n[5] Running predictions...")
 
 genes = ["PHYHIPL", "TTC9", "BRCA1"]
@@ -102,7 +104,7 @@ for gene, df in preds.items():
     print(df)
 
 
-# ================================
-# DONE
-# ================================
+
+# Finish
+
 print("\nPipeline completed successfully.")

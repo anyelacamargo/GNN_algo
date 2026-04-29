@@ -6,11 +6,15 @@ from pykeen.pipeline import pipeline
 from config import DEVICE, EPOCHS, LR
 
 
-# =========================================================
-# TRAIN MODEL
-# =========================================================
 
 def train_model(model_name, training, validation, testing):
+    """
+    Train model
+    : param model_name: model name e.g. "RotatE"
+    : param training: training set
+    : param test: test set
+    : param validation: validation
+    """
 
     print(f"[INFO] Training {model_name} on {DEVICE}")
 
@@ -70,6 +74,13 @@ def train_model(model_name, training, validation, testing):
 
 
 def save_model(result, model_name, path="models"):
+    """
+    Save model
+    : param result: results from train model
+    : param model_name: model name
+    : param model_name: model name
+    : param path: path to save model
+    """
 
     os.makedirs(path, exist_ok=True)
 
@@ -83,6 +94,11 @@ def save_model(result, model_name, path="models"):
 
 
 def load_model(model_name, path="models"):
+    """
+    Load model
+    : param model_name: model name
+    : param path: path to save model
+    """
 
     file_path = os.path.join(path, f"{model_name}.pkl")
 
@@ -93,18 +109,20 @@ def load_model(model_name, path="models"):
 
     return result
 
-# =========================================================
-# GET MODEL FOR INFERENCE
-# =========================================================
 def get_model(result):
+    """
+    Get model
+    : param result: results from train model
+    """
 
     return result.model
 
 
-# =========================================================
-# OPTIONAL: QUICK INFERENCE WRAPPER
-# =========================================================
 def predict_tail(model, triples_factory, head, relation, top_k=10):
+    """
+    Predict tail
+    : param model : model
+    """
 
     from pykeen.predict import get_tail_prediction_df
 

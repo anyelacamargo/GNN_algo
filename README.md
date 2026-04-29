@@ -1,5 +1,6 @@
 # Knowledge Graph Completion for Gene–Disease Prediction
 
+Anyela Camargo
 ## Overview
 This project reconstructs a knowledge graph embedding (KGE) pipeline to predict gene–disease associations via link prediction.
 
@@ -9,6 +10,9 @@ We model relationships of the form:
 
 ## Project Structure
 
+## Project Structure
+
+```
 root/
 ├── data/        # train / valid / test triples
 ├── models/      # saved model checkpoints
@@ -21,10 +25,12 @@ root/
 │   └── ...
 ├── requirements.txt
 ├── Dockerfile
-└── README.md
-└── GNN_algo.R
-└── run.sh
+├── README.md
+├── GNN_algo.R
+├── run.sh
 └── run.bat
+```
+
 
 ## pre-training, data QC, data features:
 Run the R script GNN_algo.R to analyse the graph
@@ -146,19 +152,28 @@ The choice of knowledge graph embedding models is guided by the structure of the
 
 - Entities: Genes, Diseases, Variants
 - Relations: Mostly directed biological associations
-- Task: Link prediction (Gene → Disease)
+- Task: Link prediction (Gene -> Disease)
 
 The graph is highly **asymmetric and hub-structured**, where:
 - Genes are low-degree, specific entities
 - Diseases are high-degree, shared targets across many genes
 
+### Parameters to optimise
+
+- Epochs = [1, 50, 100, 200, 300, 400]
+- negatives = [5,10, 20]
+- embeddings = [200, 400]
+- processor = [CPU, GPU]
+- Data: Filtering Train (Y/N)
+- Test: [1,5,200, CPU, N]
+- Best: [300, 10, 200, GPU, N]
 
 
 ### Dataset Implications
 
-- High-degree disease nodes → ranking task is difficult
-- Many-to-one relations (genes → diseases) → requires asymmetric modeling
-- Sparse gene connectivity → embedding quality depends on relation modeling more than node frequency
+- High-degree disease nodes -> ranking task is difficult
+- Many-to-one relations (genes-> diseases) -> requires asymmetric modeling
+- Sparse gene connectivity -> embedding quality depends on relation modeling more than node frequency
 
 ###Results
 
@@ -265,21 +280,45 @@ Top diseases for BRCA1:
 2723               colorectal_adenocarcinoma -3.294321
 2813            chronic_lymphocytic_leukemia -3.300998
 
-Pipeline completed successfully.
-## epochs=100 negativs=25, emb=400
-=== MODEL COMPARISON ===
-     model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
-0   TransE  0.025959  0.053170  0.004750      0.008178  0.047169      0.098162
-1  ComplEx  0.005933  0.012223  0.001021      0.001543  0.010844      0.022904
 
-## epochs=400 negativs=5, emb=200
+
+Others SPECS
+## Other Specs
+
+```text
+## epochs=100, negatives=25, emb=400
 === MODEL COMPARISON ===
-    model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
-0  RotatE  0.150642  0.220155  0.066549      0.107156  0.234734      0.333153
+model     MRR       Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+TransE    0.025959  0.053170 0.004750  0.008178      0.047169  0.098162
+ComplEx   0.005933  0.012223 0.001021  0.001543      0.010844  0.022904
+
+
+## epochs=400, negatives=5, emb=200
+=== MODEL COMPARISON ===
+model     MRR       Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+RotatE    0.150642  0.220155 0.066549  0.107156      0.234734  0.333153
 
 Selected model: RotatE
-## epochs=200 negatives=20, emb=200
+
+
+## epochs=200, negatives=20, emb=200
 === MODEL COMPARISON ===
-    model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
-0  RotatE  0.148295  0.213139  0.064395      0.101174  0.232196    
+model     MRR       Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+RotatE    0.148295  0.213139 0.064395  0.101174      0.232196  ...
+
+
+## epochs=100, negatives=20, emb=200
+=== MODEL COMPARISON ===
+     model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+0  ComplEx  0.006822  0.015226  0.000829      0.001064  0.012814      0.029389
+1   RotatE  0.135851  0.193847  0.048127      0.078009  0.223574      0.309686
+
+epochs = 300, negatives=20, emb=200, GPU, N]
+=== MODEL COMPARISON ===
+     model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+0   TransE  0.032053  0.079163  0.007652      0.019171  0.056455      0.139155
+1  ComplEx  0.020566  0.044234  0.001901      0.003252  0.039231      0.085215
+2   RotatE  0.151706  0.219321  0.067321      0.106494  0.236090      0.332149
+
+```
 

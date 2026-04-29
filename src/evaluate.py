@@ -1,6 +1,11 @@
 import pandas as pd
 
 def extract_metrics_pr(result, name):
+    """
+    Extract metrics early
+    :param result: results from model type
+    :param name: model name
+    """
 
     m = result.metric_results.to_dict()
 
@@ -16,6 +21,11 @@ def extract_metrics_pr(result, name):
 
 
 def extract_metrics(result, name):
+    """
+    Extract metrics
+    :param result: results from model type
+    :param name: model name
+    """
 
     mr = result.metric_results
 
@@ -37,6 +47,10 @@ def extract_metrics(result, name):
 
 
 def compare_models(results_dict):
+    """
+    Compare models
+    :param result_dict: load and pull model results
+    """
     rows = []
 
     for name, result in results_dict.items():
