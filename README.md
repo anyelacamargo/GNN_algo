@@ -280,22 +280,28 @@ Top diseases for BRCA1:
 
 
 
-Others SPECS
+## Other Specs
 
-## epochs=100 negativs=25, emb=400
+```text
+## epochs=100, negatives=25, emb=400
 === MODEL COMPARISON ===
-     model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
-0   TransE  0.025959  0.053170  0.004750      0.008178  0.047169      0.098162
-1  ComplEx  0.005933  0.012223  0.001021      0.001543  0.010844      0.022904
+model     MRR       Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+TransE    0.025959  0.053170 0.004750  0.008178      0.047169  0.098162
+ComplEx   0.005933  0.012223 0.001021  0.001543      0.010844  0.022904
 
-## epochs=400 negativs=5, emb=200
+
+## epochs=400, negatives=5, emb=200
 === MODEL COMPARISON ===
-    model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
-0  RotatE  0.150642  0.220155  0.066549      0.107156  0.234734      0.333153
+model     MRR       Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+RotatE    0.150642  0.220155 0.066549  0.107156      0.234734  0.333153
 
 Selected model: RotatE
-## epochs=200 negatives=20, emb=200
+
+
+## epochs=200, negatives=20, emb=200
 === MODEL COMPARISON ===
-    model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
-0  RotatE  0.148295  0.213139  0.064395      0.101174  0.232196    
+model     MRR       Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+RotatE    0.148295  0.213139 0.064395  0.101174      0.232196  ...
+```
+  
 
