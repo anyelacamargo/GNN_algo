@@ -10,8 +10,6 @@ We model relationships of the form:
 
 ## Project Structure
 
-## Project Structure
-
 ```
 root/
 ├── data/        # train / valid / test triples
