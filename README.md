@@ -10,6 +10,9 @@ We model relationships of the form:
 
 ## Project Structure
 
+## Project Structure
+
+```
 root/
 ├── data/        # train / valid / test triples
 ├── models/      # saved model checkpoints
@@ -22,10 +25,12 @@ root/
 │   └── ...
 ├── requirements.txt
 ├── Dockerfile
-└── README.md
-└── GNN_algo.R
-└── run.sh
+├── README.md
+├── GNN_algo.R
+├── run.sh
 └── run.bat
+```
+
 
 ## pre-training, data QC, data features:
 Run the R script GNN_algo.R to analyse the graph
