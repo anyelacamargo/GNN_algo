@@ -10,6 +10,8 @@ We model relationships of the form:
 
 ## Project Structure
 
+## Project Structure
+
 ```
 root/
 ├── data/        # train / valid / test triples
@@ -280,7 +282,9 @@ Top diseases for BRCA1:
 
 
 
+Others SPECS
 ## Other Specs
+
 ```text
 ## epochs=100, negatives=25, emb=400
 === MODEL COMPARISON ===
@@ -308,7 +312,13 @@ RotatE    0.148295  0.213139 0.064395  0.101174      0.232196  ...
      model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
 0  ComplEx  0.006822  0.015226  0.000829      0.001064  0.012814      0.029389
 1   RotatE  0.135851  0.193847  0.048127      0.078009  0.223574      0.309686
+
+epochs = 300, negatives=20, emb=200, GPU, N]
+=== MODEL COMPARISON ===
+     model       MRR   Hits@10  MRR_head  Hits@10_head  MRR_tail  Hits@10_tail
+0   TransE  0.032053  0.079163  0.007652      0.019171  0.056455      0.139155
+1  ComplEx  0.020566  0.044234  0.001901      0.003252  0.039231      0.085215
+2   RotatE  0.151706  0.219321  0.067321      0.106494  0.236090      0.332149
+
 ```
-
-
 
